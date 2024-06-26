@@ -1,0 +1,32 @@
+﻿@using ProjektBD.Data
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Książki";
+    var c = new PrimaryContext();
+}
+<div class="text-center">
+    <h1>Nasze książki</h1>
+    <table class="border-1 border-dark w-75" style="border: 1px solid black">
+        <tr>
+            <th>Tytuł</th>
+            <th>Opis</th>
+            <th>Autor</th>
+            <th>Rok Pub.</th>
+            <th>Kategoria</th>
+            <th>Dostępna?</th>
+        </tr>
+    @foreach(var b in c.Books){
+            var ava = b.CurrentlyAvailable();
+            <tr style="background: @(!ava?"lightcoral":"transparent"); border-top: 0.5px solid black">
+                <td>@b.Title</td>
+                <td>@b.Description</td>
+                <td>@b.Author</td>
+                <td>@b.PublicationYear</td>
+                <td>@b.Genre</td>
+                <td>@(ava?"Dostępna":"Niedostępna")</td>
+            </tr>
+    }
+    </table>
+</div>

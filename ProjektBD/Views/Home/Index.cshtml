@@ -1,0 +1,19 @@
+﻿@using ProjektBD.Data
+@using ProjektBD.Data.Entities
+@{
+    ViewData["Title"] = "Strona Główna";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Witaj w Bibliotece</h1>
+    @{
+        var c = new PrimaryContext();
+        if(c.Emplyees.Count() == 0)
+        {
+            c.Emplyees.Add(new() {Name="Anastazja",Surname="Wapiga",Position="Pracownik",HireDate=DateTime.Now,Email="Anawapiga@Bookrent.pl",Phone="997998999" });
+            c.Emplyees.Add(new() { Name = "Piotr", Surname = "Rurakowski", Position = "Pracownik", HireDate = DateTime.Now, Email = "Piorurakowski@Bookrent.pl", Phone = "999998997" });
+            c.Books.Add(new() { Title = "Ferdydurke", Author = "Witold Gombrowicz", Genre = Book.BookGenre.Fantasy, PublicationYear = 1937});
+            c.SaveChanges();
+        }
+    }
+</div>
